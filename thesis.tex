@@ -1,0 +1,153 @@
+\documentclass[12pt]{report}   % SUBMISSION TO GRAD SCHOOL
+%\documentclass[12pt,twoside]{report}  % TWOSIDE DUPLEX OUTPUT
+\usepackage{setspace}
+\usepackage{buthesis}
+\usepackage{amsmath,amssymb,graphicx,amsfonts,amsthm}
+\usepackage{verbatim}
+\usepackage{epsfig}
+\usepackage{wrapfig}
+\usepackage{latexsym,amsfonts,amscd}
+\usepackage{changebar}
+\usepackage{enumerate}
+% Do you use TikZ?
+\usepackage{tikz}
+\usepackage{pgfmath}
+\usetikzlibrary{decorations}
+\usetikzlibrary{shadows}
+
+% Used only for example text
+\usepackage{lipsum}
+
+\usepackage[footnotesize,bf]{caption}  % Reduces caption font sizes
+
+%%%%%%%%%%%%%%%%% Fancy chapter headings %%%%%%%%%%%%%%%%%%%
+\usepackage[Bjarne]{ThesisFncychap}
+\include{BjarneThesisTitles}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%-----------------------------------------------------------------
+%% Control the fonts and formatting used in the table of contents, list of
+%% figures, and list of tables
+\usepackage[titles]{tocloft}
+
+%% Aesthetic spacing redefines that look nicer to me than the defaults.
+\setlength{\cftbeforechapskip}{-1ex}
+\setlength{\cftbeforesecskip}{-3.5ex}
+\setlength{\cftbeforesubsecskip}{-3.5ex}
+\setlength{\cftbeforetabskip}{-3.5ex}
+\setlength{\cftbeforefigskip}{-3.5ex}
+%-----------------------------------------------------------------
+
+\dissertation % This *is* what you're writing, right?
+
+% Information about the document
+%-----------------------------------------------------------------
+\title{
+How to Graduate With a Ph.D.
+}
+\author{Josiah Carberry}
+\degree{Doctor of Philosophy}
+\department{The Division of Applied Mathematics}
+\previousdegrees{
+		B.Sc., Harvard University; Boston, MA, 1892\\ 
+		M.A., Yale University; New Haven, CT, 1899}	
+\thesismonth{May} \thesisyear{2009}
+%-----------------------------------------------------------------
+
+\begin{document}
+
+\doublespacing
+\begin{preliminaries}
+\maketitle
+
+\copyrightpage
+
+\begin{signature}
+  \director{Pierre-Simon Laplace, Ph.D., Advisor}
+  \reader{Ruth Simmons, Ph.D., Reader}
+  \reader{Gordon Gee, Ph.D., Reader}
+\end{signature}
+
+\begin{vita}
+  \input{content/vita}
+\end{vita}
+
+\begin{acknowledgments}
+  \input{content/acknowledgments}
+\end{acknowledgments}
+
+\begin{abstract}
+  \input{content/abstract}
+  \thispagestyle{empty}
+  % Do you want this page to exist in the numbering?
+%  \thispagestyle{empty}
+%  \if@twoside
+%    \addtocounter{page}{-2}  
+%  \else
+%    \addtocounter{page}{-1}
+%  \fi
+\end{abstract}
+
+% Why double-space toc,lof, and lot?
+\begin{spacing}{1}
+  \tableofcontents
+  \clearpage{\pagestyle{empty}\cleardoublepage}
+
+  \footnotesize
+  \fontsize{11.5pt}{12.5pt}\selectfont
+  \listoftables
+  \clearpage{\pagestyle{empty}\cleardoublepage}
+
+  \listoffigures
+  \clearpage{\pagestyle{empty}\cleardoublepage}
+  \normalsize
+\end{spacing}
+
+\end{preliminaries}
+
+\pagestyle{myheadings}
+
+%------------------------ CONTENT ------------------------%
+
+\chapter{Introduction}
+\input{content/intro}
+\clearpage{\pagestyle{empty}\cleardoublepage}
+
+\chapter{Preliminary Stuff}
+\input{content/tools}
+\clearpage{\pagestyle{empty}\cleardoublepage}
+
+\chapter{Blowing Smoke}
+\input{content/smoke}
+\clearpage{\pagestyle{empty}\cleardoublepage}
+
+\chapter{The Main Event}
+\input{content/main}
+\clearpage{\pagestyle{empty}\cleardoublepage}
+
+\chapter{Applying The Main Event}
+\input{content/application}
+\clearpage{\pagestyle{empty}\cleardoublepage}
+
+\chapter{Conclusion}
+\input{content/conclusion}
+\clearpage{\pagestyle{empty}\cleardoublepage}
+
+%------------------------ APPENDIX ------------------------%
+\appendix
+\chapter{Stuff Too Complicated To Talk About}
+\input{content/appendix/app1}
+\clearpage{\pagestyle{empty}\cleardoublepage}
+
+\chapter{Stuff Too Boring to Talk About}
+\input{content/appendix/app2}
+\clearpage{\pagestyle{empty}\cleardoublepage}
+
+%---------------------- BIBLIOGRAPHY ----------------------%
+
+\bibliographystyle{plain}
+\begin{spacing}{0.9}
+  \bibliography{thesis}
+\end{spacing}
+
+\end{document}
