@@ -1,0 +1,66 @@
+% ----------------------------------------- Sample ----------------------------------------
+
+% \lipsum[61-80]
+
+
+% ----------------------------------------- Real ----------------------------------------
+
+\section{Matched asymptotic analysis}
+
+\subsection{Outer flow}
+\subsection{Inner flow}
+\subsection{Coupling}
+
+
+\section{Rationale}
+
+Our method is based on the well-known approximations to Navier-Stokes equations for high $\Rey$ where the viscous effects are dominated by inertia of the fluid everywhere except in a boundary layer of thickness scale $\visc^{1/2}$. 
+Traditionally, these equations are arrived at by using matched asymptotic expansion, and require matching the flow field in an intermediate region.
+In our model, we seek to replace the matching procedure with simple continuity conditions on a well-defined boundary curve $C$ between the two regions.
+The nature of these conditions, are determined by considerations of matching the asymptotic solutions and simultaneously by the need for the approximate PDEs on both regions to be well-posed and possess unique solution.
+We elaborate on these considerations below.
+
+The velocity field in the outer inviscid region can be decomposed into a rotational component $\bu_{\omega}$ and a potential component $\grad \phi$ as $\bu = \bu_{\omega} + \grad \phi$, such that $\bu_\omega\to 0$ at infinity.
+Then the incompressible condition requires that $\grad \phi$ satisfy the Laplace's equation
+\begin{align}
+\label{eqn:Laplace}
+\grad^2 \phi = 0,
+\end{align}
+and $\bu_\omega$ is related to the vorticity field as
+\begin{align}
+\omega \bk = \grad \times \bu = \grad \times \bu_{\omega},
+\end{align}
+the inverse of which, under the condition of no flow at infinity, is given by the Biot-Savart law as
+\begin{align}
+\label{eqn:Biot-Savart}
+\bu_{\omega} (\bx, t) =  \frac{1}{2\pi} \int_{S} d\by \frac{\omega(\by, t)\bk \times (\bx - \by)}{|\bx - \by|^2}.
+\end{align}
+Due to the inviscid dynamics in this region, the vorticity is merely advected with fluid elements satisfying
+\begin{align}
+ \omega_t + \bu\cdot\grad\omega = 0. \label{eqn:Vorticity}
+\end{align}
+The appropriate auxiliary conditions with this equation are the initial condition for vorticity $\omega$ and its flux across the boundary $C$, because of the hyperbolic nature of this equation. 
+Similarly, because of the elliptic nature of \eqref{eqn:Laplace}, boundary data needs to be specified for $\phi$ (Dirichlet) or $\grad \phi \cdot \bn$ (Neumann) on $C$ and at $\infty$.
+In our case, the specification of the normal velocity $\bu \cdot \bn$ on $C$, provides the Neumann boundary condition through $(\bu_\omega + \grad \phi) \cdot \bn = \bu \cdot \bn$.
+
+In the boundary layer, similar considerations lead to our choice of boundary conditions.
+The governing equations \eqref{eqn:Prandtl} are parabolic for $u$ in $\eta$ direction and hyperbolic in $\theta$ and $t$, while for $v$ they are hyperbolic. 
+This indicates that the no-penetration condition on the body surface is enough to determine $v$, while for $u$ one extra condition is required on $C$ other than the no-slip condition on body surface. 
+Besides, one boundary condition is required to determine pressure $\Pi$, typically on $C$.
+Combining these considerations together, the conditions (???) provide the correct number and kind of conditions for (???) to be well-posed. 
+
+The solution of the model is not expected to significantly depend on the precise location of the boundary curve $C$.
+When going farther away from the body surface within the boundary layer, the solution of Prandtl's equation has an asymptote $u = $ const in normal direction $\eta$ (except the small region close to the separation point).
+Physically, the viscous stress becomes smaller and smaller, and the advection of vorticity becomes more and more dominant over the diffusion effect.
+This asymptotic behavior automatically matches with the inviscid behavior in the outer region for some appropriately matched pressure.
+Mathematically, this expectation is strengthened by the fact that Prandtl's equation (???) degrades to the inviscid Euler equation (???) under the condition $u_\eta = 0$ and $\Pi = p$.
+Therefore, the exact location of the boundary only determines the location where we switch over our representation from one form to the other, but the underlying flow remains the same.
+
+Prandtl's boundary layer approximation is considered to be inapplicable near the region where the boundary layer separates. 
+While a general asymptotic model of strongly coupled flow at high Reynolds number near separation point is not available, potential flow around a corner is considered a useful candidate for representing the outer region flow in the vicinity of separation (cite Meyer's review).
+Near a corner of internal angle $\alpha$, the complex velocity potential is $U (z/L)^{\pi/\alpha}$, with velocity scaled as $U (z/L)^{\pi/\alpha-1}$.
+If the length scale of the corner is assumed as $l \sim \visc^p L$ ($p > 0$), the velocity equation, scaled as $l/T \sim U(l/L)^{\pi/\alpha-1}$, gives the time scale in the corner as $T \sim \frac{L}{U} \visc^{p(2-\pi/\alpha)}$. 
+In our case, from the upstream side $\alpha > \pi/2$, so the time scale $T$ near separation point is much smaller than the convection time scale $L/U$ with $\visc \ll 1$, which says the vorticity will leave the separation region once they get convected or created there and never get accumulated significantly. 
+From the downstream side, the time scale is not small and vorticity gets accumulated; this is consistent with the cumulation of vorticity in the recirculation region downstream of the separation.
+Therefore despite of this unavailability of an accurate model near separation point, the rate of vorticity shedding may not depend on the details of the flow near the point of separation, even when the flow is unsteady. 
+We use the example of the impulsively started cylinder to verify this assumption.

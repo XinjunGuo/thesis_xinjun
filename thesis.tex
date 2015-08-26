@@ -11,7 +11,7 @@
 \usepackage{enumerate}
 % Do you use TikZ?
 \usepackage{tikz}
-\usepackage{pgfmath}
+%\usepackage{pgfmath}
 \usetikzlibrary{decorations}
 \usetikzlibrary{shadows}
 
@@ -30,6 +30,22 @@
 %% figures, and list of tables
 \usepackage[titles]{tocloft}
 
+
+% redefine some mathematical symbols
+\newcommand{\Rey}{Re}
+\newcommand{\visc}{\nu}
+\newcommand{\bu}{\boldsymbol{u}}
+\newcommand{\bx}{\boldsymbol{x}}
+\newcommand{\by}{\boldsymbol{y}}
+\newcommand{\bk}{\boldsymbol{k}}
+\newcommand{\bn}{\boldsymbol{n}}
+\newcommand{\bt}{\boldsymbol{t}}
+\newcommand{\grad}{\nabla}
+\newcommand{\Uinf}{\boldsymbol{U}_{\infty}}
+\newcommand{\uomegao}{{\bu_{\omega o}}}
+\newcommand{\uomegan}{{\bu_{\omega n}}}
+
+
 %% Aesthetic spacing redefines that look nicer to me than the defaults.
 \setlength{\cftbeforechapskip}{-1ex}
 \setlength{\cftbeforesecskip}{-3.5ex}
@@ -43,15 +59,15 @@
 % Information about the document
 %-----------------------------------------------------------------
 \title{
-How to Graduate With a Ph.D.
+A vortex shedding model for unsteady fluid dynamics
 }
-\author{Josiah Carberry}
+\author{Xinjun Guo}
 \degree{Doctor of Philosophy}
-\department{The Division of Applied Mathematics}
+\department{The Department of Physics}
 \previousdegrees{
-		B.Sc., Harvard University; Boston, MA, 1892\\ 
-		M.A., Yale University; New Haven, CT, 1899}	
-\thesismonth{May} \thesisyear{2009}
+		% B.Sc., Harvard University; Boston, MA, 1892\\ 
+		M.Sc., Nankai University; Tianjin, China, 2009}	
+\thesismonth{May} \thesisyear{2015}
 %-----------------------------------------------------------------
 
 \begin{document}
@@ -63,9 +79,9 @@ How to Graduate With a Ph.D.
 \copyrightpage
 
 \begin{signature}
-  \director{Pierre-Simon Laplace, Ph.D., Advisor}
-  \reader{Ruth Simmons, Ph.D., Reader}
-  \reader{Gordon Gee, Ph.D., Reader}
+  \director{Shreyas Mandre, Ph.D., Advisor}
+  \reader{Thomas Powers, Ph.D., Reader}
+  \reader{James Valles, Ph.D., Reader}
 \end{signature}
 
 \begin{vita}
@@ -113,21 +129,21 @@ How to Graduate With a Ph.D.
 \input{content/intro}
 \clearpage{\pagestyle{empty}\cleardoublepage}
 
-\chapter{Preliminary Stuff}
-\input{content/tools}
+\chapter{Analytical Considerations}
+\input{content/model}
 \clearpage{\pagestyle{empty}\cleardoublepage}
 
-\chapter{Blowing Smoke}
-\input{content/smoke}
+\chapter{Numerical Implementation}
+\input{content/numerical}
 \clearpage{\pagestyle{empty}\cleardoublepage}
 
-\chapter{The Main Event}
-\input{content/main}
+\chapter{Results}
+\input{content/results}
 \clearpage{\pagestyle{empty}\cleardoublepage}
 
-\chapter{Applying The Main Event}
-\input{content/application}
-\clearpage{\pagestyle{empty}\cleardoublepage}
+% \chapter{Applying The Main Event}
+% \input{content/application}
+% \clearpage{\pagestyle{empty}\cleardoublepage}
 
 \chapter{Conclusion}
 \input{content/conclusion}

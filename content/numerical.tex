@@ -1,0 +1,41 @@
+%------------------------------------------- Sample ------------------------------------
+
+\lipsum[81-100]
+
+\begin{figure}
+  \centering
+  \input{tikz/picture1}
+  \caption[Awesome picture]{Isn't this picture awesome?}
+\end{figure}
+
+\begin{figure}
+  \centering
+  \input{tikz/picture2}
+  \caption[Tubular picture]{Totally tubular, dude}
+\end{figure}
+
+%------------------------------------------- Real ----------------------------------------
+
+\section{Outer flow}
+
+\subsection{Lagrangian description}
+
+\subsection{Fast vortex methods}
+The straightforward method of computing the velocity induced by every particle requires O($N^2$) operations for $N$ vortex elements.
+This precludes high-resolution studies of bluff body flows with more than say 50000 elements.
+However, fast methods exist that have operation counts of O($N\log N$)  (Barnes \& Hut 1986) or O($N$) (Greengard \& Rocklin 1987) depending on the details of the algorithm.
+The basic idea of these methods is to decompose the element population spatially into clusters of particles and build a hierarchy of clusters or a 'tree' - smaller neighboring clusters combine to form a cluster of the next size up in the hierarchy and so on.
+
+The contribution of a cluster of particles to the velocity of a given vortex can then be computed to desired accuracy if the particle is sufficiently far from the cluster in proportion to the size of the cluster and a sufficiently large number of terms in the multipole expansion is taken.
+This is the essence of the 'particle-box' method, requiring O($N\log N$) operations.
+One then tries to minimize the work required by maximizing the size of the cluster used while keeping the number of terms in the expansion within a reasonable limit and maintaining a certain degree of accuracy.
+
+The 'box-box' scheme goes one step further as accounts for box-box interactions as well. 
+These interactions are in the form of shifting the expansions of a certain cluster with the desired accuracy to the center of another cluster.
+Then those expansions are used to determine the velocities of the particles in the second cluster.
+This has the effect of minimizing the tree traversals for the individual particles, requiring only $O(N)$ operations.
+In our numerical implementation, this scheme is utilized.
+
+\section{Inner flow}
+
+\section{Coupling}

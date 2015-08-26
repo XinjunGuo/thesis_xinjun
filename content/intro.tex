@@ -1,3 +1,46 @@
-\lipsum[21-40]
+% ---------------------------------------------------- Sample ----------------------------------------------
 
-\nocite{Lax1956,Cooley1965,Banach1924}
+% \lipsum[21-40]
+
+% \nocite{Lax1956,Cooley1965,Banach1924}
+
+
+% ----------------------------------------------------- Real ---------------------------------------------------
+
+\section{Description of the problem}
+
+\section{Related investigations}
+
+Numerically solving the governing Navier-Stokes equations using primitive variables is prohibitively expensive from the perspective of flow optimization and control.
+A simple back-of-the-envelope estimate of the computational effort for solving the flow corresponding to a Reynolds numbers of $10^4$, shown in table 1, highlights this issue.
+The primary expense arises from resolving the boundary layer; its thickness dictates the number of grid points to be used for spatial discretization, and the time step through the CFL condition.
+On modern desktop computers one flow solution in 2D takes at least hours, and in 3D takes at least days. (The computational effort shown in table 1 is grossly underestimated; flow past stationary, moving and flexible bodies at $Re = 10 - 10^3$ takes a few CPU-days in 2D, and CPU-weeks in 3D, and very little data is available for larger $Re$.)
+Calculating the adjoint variables and implementing a gradient based optimization algorithm increases the computational time to at least months for 2D problems (yeas for 3D).
+Methods like Large Eddy Simulations model sub-grid scale eddies, but still have to resolve the boundary layer to accurately predict the shed vorticity, and hence are not exempt from this estimate.
+Parallel computing on a cluster of processors can reduce the 2D computational time to few days and today's top 5 supercomputers may be able to reduce the computational time for 3D to several hours, if the algorithms are effectively parallelized, but it is uncertain how data dependencies can be addressed for parallelization.
+In conclusion, optimization, state estimation, and control are still out of range of computation fluid dynamics.
+
+An hierarchy of reduced order models of fluid flow provide an alternative to avoid the computational effort for the solution of Navier-Stokes equations, at the expense of reduced (or sometimes uncertain) accuracy.
+All these models identify that viscous effects in the flow may be neglected except for the process of vorticity shedding from the body.
+The simplest of these models apply to rigid wings.
+They assume the flow around the wings to be qui-steady and model the fluid dynamic force on them in terms of the instantaneous orientation, velocity and acceleration of the wing.
+Versions of such models that incorporate unsteadiness are also available.
+The assumptions underlying these models make them unsuitable for large amplitude unsteady motion, where the flow can separate from multiple points on the body.
+
+Models in the next level of hierarchy also only apply to bodies with sharp edges, but model vorticity transport according to inviscid dynamics.
+These models assume that vorticity is shed only from the sharp edges of the body and then evolves into a vortex sheet.
+The rate of the vorticity shed is chosen so as to eliminate a singularity of the flow at these sharp edges - the celebrated Kutta condition from aerodynamics.
+The shed vortex sheet is usually represented by an array of discrete point vortices obeying inviscid vortex dynamics or a single tightly rolled-up point vortex (governed by the Brown-Michael vortex dynamics).
+These methods are also very efficient.
+However, they do not allow for the possibility of separation at any point other than one of the sharp edges on the body.
+As a result, they cannot be used to model vorticity shed from a smooth body (e.g. an elliptical wing).
+Moreover, in practice, vorticity is not always shed from the leading edge of a wing.
+These methods cannot a priori predict the edges at which the flow separates.
+Because the optimal flows are suspected to correspond to a precise control of the instance vorticity shedding switches on or off from one of the edges, or of shedding from another point on the surface of body, these models appear to mis-represent or eliminate the effects underlying the enhanced unsteady performance.
+
+The most accurate and computationally intensive methods in the hierarchy account for the vorticity in the boundary layer as vortex sheets of variable strength at or near the surface of the body.
+The vortex sheets are represented as arrays of point of blob vortices and function to enforce the no-slip condition.
+These vortices transport away from the boundary by advection and diffusion, and leave the boundary layer where the flow separates, thus accurately modeling vorticity shedding.
+The drawback of this method is that accurate description of flow requires computational effort comparable to direct solution of Navier-Stokes equations.
+It is so because the distance between the point or blob vortices should be comparable to a fraction of the boundary layer thickness, and play a role analogous to grid spacing in direct solution of Navier-Stokes equations.
+These methods are not reduced order models in the strict sense, because they apply for all $Re$ and do not take advantage of the large $Re$ of the flow.

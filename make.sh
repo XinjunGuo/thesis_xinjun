@@ -6,3 +6,4 @@ latex thesis
 dvips -t letter thesis.dvi
 pstopdf thesis.ps
 ./clean.sh
+open thesis.pdf
