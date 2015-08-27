@@ -5,6 +5,46 @@
 
 % ----------------------------------------- Real ----------------------------------------
 
+\section{Motivation}
+This section describes the approximations that are made and how certain considerations allow us to simplify the equations, by omitting terms that are known to be small or information that is not important.
+
+The most important, and the most delicate, approximation is naturally the neglect of viscosity.
+The coefficient of viscosity is small, but it multiplies the highest derivative, and the perturbation problem is said to be singular.
+The inviscid problem and the viscous problem have very different characters; in particular they do not require the same number of boundary conditions.
+Regions exist in the flow where the velocity gradients are so large that the viscous term is as large as the inertial term.
+This viscous term can change the local value of the vorticity by an amount of order 1, meaning that it does not tend to zero while the coefficient of viscosity does.
+Therefore the flow with small viscosity cannot be treated as slightly different from the inviscid flow in the usual sense, and a straightforward attempt to expand the solution as a power series in $\nu$ would fail.
+
+The justification for omitting the viscosity is the following.
+The effect of viscosity will be to diffuse the vorticity over very short distances, without creating or destroying any.
+(The viscous term in Eq. ??? is the divergence of $\nu \grad \omega$, which is interpreted as a flux of vorticity. It is not source term.)
+Let $L$ be the length scale associated with the body, $\Uinf$ the free stream velocity and $\nu$ the kinematic viscosity.
+The non-dimensional number $L\Uinf/\nu$ is the Reynolds number, and is large in all cases under consideration.
+The length scale associated with the viscous diffusion if $\sqrt{\nu t}$ where $t$ is the "age" of the vorticity.
+Let us consider some vorticity which is "born" at the solid boundary and in a time $L/\Uinf$ is transported into the wake, to a distance $L$ from the solid.
+The viscous scale becomes $\sqrt{\nu L/\Uinf}$ and the ratio of this scale to $L$ is $\sqrt{\nu/L\Uinf}$, or $Re^{-1/2}$, and thus is small.
+In general the flow properties close to the solid boundary will not be sensitive to the displacement of the vorticity over such a small distance.
+Since predicting the stresses on the solid is the ultimate objective of the study, omitting detailed information about the vorticity diffusion in the wake is minor as long as the transport is correct.
+
+However the vorticity is "produced" at the solid boundary and its subsequent transport is very sensitive to its initial life, near the wall, during which the scales are small and the viscous term is important.
+It is the convection with the fluid that carries the vorticity into the large structures of the wake, but the velocity is zero at the wall and only the viscosity can make the vorticity penetrate into the stream at all.
+Therefore the "justification" we just reviewed breaks down in the wall region.
+
+This motivates the procedure of coupling an invisicid outer flow and a viscous boundary layer flow.
+This procedure is common when the outer flow is not only treated as inviscid but also as irrotational.
+Here, the outer flow will be vertical.
+The effort will be worthwhile if an efficient solver is available for the simplified equations in each region.
+
+The vortex method is efficient in the outer flow; it treats the transport term accurately and provides the necessary resolution in the wake.
+It does not cause any problem at large distances from the body.
+Its weakness in treating the detailed viscous features will not disturb the large scale structures which dominate in the wake.
+The implicit finite difference method is very good at treating thin viscous flows.
+For such a small and logically rectangular domain it is also very fast.
+Both methods are available and well tested.
+The new element that is needed is a procedure that makes the two regions interact through the boundary conditions at the interface.
+
+The systematic mathematical formulation of these ideas are presented in the following, and some comments about the method are then followed.
+
 \section{Matched asymptotic analysis}
 
 \subsection{Outer flow}
