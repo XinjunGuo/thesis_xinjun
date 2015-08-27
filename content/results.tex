@@ -1,10 +1,57 @@
 % --------------------------------------- Sample -------------------------------
 
-\lipsum[101-120]
+% \lipsum[101-120]
 
 % ---------------------------------------- Real ----------------------------------
 
+The flow behind a circular cylinder started impulsively in rotation and/or translation is investigated as a prototype of unsteady separated flows.
+Computations are presented for different scenarios to validate our model and gain some insight into the physical mechanisms present in such flows.
+
 \section{Diagnostics}
+
+The Reynolds number of the flow is defined based on the radius, as
+\begin{align}
+Re = UR/\nu,
+\end{align}
+and the time ($t$) is non-dimensionalized as
+\begin{align}
+T = Ut/R.
+\end{align}
+The principal variable of our scheme is the vorticity field, which is described as the superposition of the vorticity field of the individual particles.
+One may compute diagnostics such as the streamlines, body forces and velocity field using the strength and location of those vortices.
+
+{\bf Streamlines}
+The streamlines of the flow may be computed as a linear superposition of the streamlines induced by the individual particles:
+\begin{align}
+\Psi (\bx) = -\frac{1}{2\pi} \Sigma_{i=1}^{N} \Gamma_i \log |\bx - \bx_i|.
+\end{align}
+Note that the point-voted stream function is used. This approach is dictated by the presence of the body.
+The use of smooth vortices near its surface would imply a non-constant stream function inside the body plus violating the impermeability condition.
+In order to compute the stream function on a grid, the fast vortex method mentioned before is used.
+
+{\bf Body vorticity}
+The vorticity on the body is given by
+\begin{align}
+\omega_{body} = -\nabla^2 \Psi.
+\end{align}
+As the stream function may be computed on a body-fitted regular grid a finite difference operator may then be applied to the Laplacian so that the vorticity is computed as
+\begin{align}
+\omega_{body} = - (7\Psi_0 - 8\Psi_1 + \Psi_2) / 2h^2,
+\end{align}
+where, if $y = 0$ describes locally the body surface, then $\Psi_0$ is the value of the stream function on the body and $\Psi_1$, $\Psi_2$ the values at grid locations $y = h$ and $y = 2h$ respectively.
+Note that the high-frequency oscillations that appear on the plots of surface vorticity may be attributed to the irregular positions of the vortex particles in the vicinity of the boundary.
+
+{\bf Body forces}
+The drag force can be computed as the sum of the form or pressure drag $\bF_p$ and the friction drag $\bF_f$.
+
+The pressure drag can be determined from the flux of vorticity on the surface of the cylinder as
+\begin{align}
+\bF_p = -R \int_0^{2\pi} \nu \frac{\partial \omega}{\partial r} \hat{\be}_{\theta} d\theta,
+\end{align}
+while the friction drag may be computed from the vorticity on the surface of the body as
+\begin{align}
+\bF_f = R \int_0^{2\pi} \nu \omega \hat{\be}_{\theta} d\theta.
+\end{align}
 
 
 \section{Results}
