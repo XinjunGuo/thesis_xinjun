@@ -7,7 +7,68 @@
 
 % ----------------------------------------------------- Real ---------------------------------------------------
 
+Bio-location using high Reynolds number (Re) unsteady fluid dynamics is an active area of research.
+The ability of many birds, mammals, insects, fish to control the unsteady flow around them currently appears to be outside the range of robotic mimics.
+Effective manipulation and control of unsteady effects at high Reynolds numbers are considered to underlie the superior performance of these organisms.
+As the robotics community pushes the limits on engineering, it is useful to know the fundamental performance limits under various fluid-structure interaction setting, e.g. maximum propulsive power of a flexible fin, or the maximum lift possible from a periodically flapping wing.
+The set of beneficial unsteady effects is small and hence, has proved difficult to find.
+The challenge is to develop a reasonable strategy for scanning the large space of all possible motions and deformations of the body to determine the beneficial set.
+Optimization and control theory, with calculus of variations at its foundation, provides a framework fro tackling this complexity.
+Steady progress on a control theoretic framework applied to steady and unsteady fluid dynamics has resulted in significant advances since the late 1980s.
+In a nutshell, the strategy is to couple methods of solving the governing Navier-Stokes equations with adjoint-based gradient calculations to facilitate optimization and control.
+For example to find the maximum lift possible from the unsteady stroke of a wing, one can use gradient descent algorithms.
+However, the presence of nonlinearities and multiple scales in the fluid dynamics impedes rapid computation of the flow.
+
 \section{Description of the problem}
+
+Separated flows, in which the fluid fails to smoothly follow the solid surface, in contrast with attached flows, are generally more complex and more challenging to measure or predict.
+It was shown by Prandtl that, for the same conditions, the viscous equations and the inviscid equations can have very different solutions even if viscosity is extremely weak, precisely because the viscous flow might separate while the inviscid flow does not.
+Flows at high Reynolds numbers (low viscosity) are thus very sensitive and, by and large, we only have a qualitative and sometimes simplistic knowledge of their behavior.
+
+In most designs, separation is undesirable since it results in inefficient operation, with high drag or loss of pressure, or even it leads to a dangerous situation like stall.
+However many devices, like wings or diffusers, often operate on the verge of separation.
+In other cases separation is present in the design conditions, where it is undesirable but unavoidable, like an aircraft tails or cars, or a normal feature of the flow, like on a three dimensional wing.
+
+A relevant example is the flow around the retreating blade of a helicopter in translation.
+The blade experiences large and rapid changes of incidence and velocity, sufficient to cause stall with strong unsteady effects.
+The blade may even move with the trailing edge forward for part of the cycle, which always causes separation.
+The dynamics stability of the system strongly depends on the aerodynamic loads, especially the pitching moment, and these exhibit very significant non-linear and hysteric effects.
+Figure ?? illustrates how much the loads can differ during dynamic stall from static loads at the same incidence.
+Accurately predicting dynamic stall would thus be very useful, and should be possible in the near future (at least for two-dimensional flow), thanks to improvements in numerical methods and computers.
+
+Experimental results demonstrate the strong sensitivity of separated flows to details of body geometry, for instance surface roughness, and of course to the Reynolds number.
+The best known example is the circular cylinder: this flow still exhibits dramatic changes at Reynolds numbers of one million (Fig. 2 and 3).
+Wind tunnel tests are less reliable when fine viscous effects are involved than when the compressibility effects dominate, because the Reynolds number depends on model size, while the Mach number does not, and because separation is influenced by wind-tunnel turbulence.
+Analysis alone has not been able to produce many results, mainly because separated flows can rarely be treated as slightly perturbed from a known exact solution: they are not very accessible to small disturbance theories.
+Free streamline theory made use of the observation that, in many cases, drag depends mostly on the forebody shape (upstream of the separation point) and very little on the part of the body which is inside the wake.
+Pressure also appears to be almost constant in that region.
+The idea developed was to treat the wake as a "dead-water" region and to assume a constant pressure in that region; in general the value of the base pressure is determined empirically.
+This theory did produce some good results, but a method that ignores the unsteady character of the flow cannot be expected to be very accurate; it relies very much on empiricism.
+Thus there is an existing need for the development of numerical methods capable of solving either the full Navier-Stokes equations or a high level approximation to them without relying on much empirical input.
+Once these methods have reached an acceptable level of accuracy, they are expected to be much faster and less expensive than large scale wind tunnel tests, and amy be more accurate if they are carefully validated against fight tests.
+
+Whereas accurate and practical numerical methods are available to compute attached flows, similar methods do not exist for separated flows, which are vortical.
+The slowly-varying, attached, irrotational flows are very amenable to finite difference or finite element methods, and to an Eulerian formulation.
+Some of these methods can also treat separated flows, but obtaining accurate results becomes extremely costly at moderate or high Reynolds numbers.
+One alternative is the Lagrangian "Vortex Method".
+This method provides a description which is better adapted to high-Reynolds number, vorticity-dominated, unsteady flows, and should result in a greater accuracy for a given level of computing resources.
+
+The first objective of this work was to study the capabilities of the Vortex Method, review its inherent strengths and weakness, especially in the context of two-dimensional separated flows, and remedy some of the weakness.
+The other objective was to develop a reliable and accurate computer program, based on the Vortex Method, for the simulation of a general class of separated flows.
+This program has been validated by systematic comparison with known results, and is beginning to be used as an active research tool to investigate some candidate designed, in parallel with wind tunnel tests.
+
+The flows to be considered are viscous flows past two-dimensional solid bodies in a uniform stream.
+Only incompressible flows are considered.
+The incompressibility limitation is associated with the Vortex Method.
+The two-dimensional restriction is not, but simulating two-dimensional flows is a first step and reflects the "state of the art".
+(The extension to three dimensions would not be straightforward, but it is certainly possible.)
+We consider here one or more bodies and they may be in non-uniform motion.
+Even if the motion is uniform, the flow is likely to be unsteady with a possible periodic character.
+Frequently separation of the boundary layer will occur as a result of the body being bluff or at high angles of attack.
+Large vortical structures will appear and form a wake having a turbulent character, and these structures will strongly influence the loads on the body.
+Their subsequent decay in the wake far downstream is of less interest because of their small influence on the loads.
+Again, typical examples are the flow past a circular cylinder, and the static or dynamic stall of an airfoil.
+
 
 \section{Related investigations}
 
