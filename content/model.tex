@@ -45,11 +45,47 @@ The new element that is needed is a procedure that makes the two regions interac
 
 The systematic mathematical formulation of these ideas are presented in the following, and some comments about the method are then followed.
 
+
 \section{Matched asymptotic analysis}
 
+
 \subsection{Outer flow}
+
+For high-Reynolds-number flow, the viscous term is dropped as mentioned before, and the governing equations are correspondingly the inviscid Euler's equations
+\begin{align}
+\bu_t + \bu \cdot \grad \bu  =  -\grad p,  \quad
+\grad \cdot \bu  =  0.
+\label{eqn:Euler}
+\end{align}
+One of the consequences of this simplification is that the order of the equations in space is reduced from 2 to 1, and the required number of boundary conditions is reduced correspondingly.
+The boundary of this domain is composed of two parts, infinity and the interface $C$ with the boundary layer. 
+At infinity, the natural choice of boundary condition is $\bu = \Uinf$, and the proper boundary condition on the interface $C$ will be discussed later.
+
 \subsection{Inner flow}
+
+The inviscid approximation above is valid except in the thin region close to the body, or the so-called boundary layer.
+The boundary layer thickness scales as $\delta = c\sqrt{\nu}$, where $c$ is a dimensionless number of order $1$.
+In the boundary layer the viscous term are retained, but the thinness of the layers renders some terms negligible.
+Curvature effects will not be included.
+This is legitimate for shapes like a circular cylinder; for airfoils, it might be necessary to account for curvature near the trailing edge, or to round it off so as to increase its radius of curvature.
+The governing equations in this region are the classical Prandtl's approximation
+\begin{align}
+u_t + uu_{\theta} + vu_{\eta}  =  - \Pi_{\theta} + \visc u_{\eta\eta},  \quad
+u_\theta + v_\eta  =  0,
+\label{eqn:Prandtl}
+\end{align}
+in which ($\theta$,$\eta$) is the local coordinate system, ($u$,$v$) are the corresponding velocity components and $\Pi$($\theta$,$t$) denotes the pressure. 
+On the surface of static solid body, they satisfy the same no penetration and no slip conditions $u = v = 0$.
+
 \subsection{Coupling}
+
+On the interface $C$ between the boundary layer and the outer region, we impose the continuity of velocity components, pressure and vorticity as
+\begin{equation}
+ u = \bu \cdot \bt, \quad v = \bu \cdot \bn,  \quad \Pi = p, \text{ and } u_{\eta} v = \omega \bu \cdot \bn,
+\label{eqn:matchingbcs}
+\end{equation}
+where ($\bt$, $\bn$) are the local tangential and normal directions on $C$, and vorticity is defined as $\omega \bk = \grad \times \bu$. 
+The last of these conditions is imposed only for outflow ($v = \bu \cdot \bn > 0$) and provides an estimate for the vorticity shed from the boundary layer to the outer region.
 
 
 \section{Rationale}
