@@ -7,7 +7,7 @@
 
 % ----------------------------------------------------- Real ---------------------------------------------------
 
-Bio-location using high Reynolds number (Re) unsteady fluid dynamics is an active area of research.
+Bio-locomotion using high Reynolds number (Re) unsteady fluid dynamics is an active area of research.
 The ability of many birds, mammals, insects, fish to control the unsteady flow around them currently appears to be outside the range of robotic mimics.
 Effective manipulation and control of unsteady effects at high Reynolds numbers are considered to underlie the superior performance of these organisms.
 As the robotics community pushes the limits on engineering, it is useful to know the fundamental performance limits under various fluid-structure interaction setting, e.g. maximum propulsive power of a flexible fin, or the maximum lift possible from a periodically flapping wing.
@@ -80,6 +80,33 @@ Calculating the adjoint variables and implementing a gradient based optimization
 Methods like Large Eddy Simulations model sub-grid scale eddies, but still have to resolve the boundary layer to accurately predict the shed vorticity, and hence are not exempt from this estimate.
 Parallel computing on a cluster of processors can reduce the 2D computational time to few days and today's top 5 supercomputers may be able to reduce the computational time for 3D to several hours, if the algorithms are effectively parallelized, but it is uncertain how data dependencies can be addressed for parallelization.
 In conclusion, optimization, state estimation, and control are still out of range of computation fluid dynamics.
+
+\begin{table}[h] 
+\small
+\begin{tabular}{| p{3.5cm} | l l | l l |}
+\hline
+                                                                      &       2D scaling                                         &      Estimate                &           3D scaling                                   &             Estimate              \\
+\hline
+Reynolds number                                      &      $Re = Ua/\nu$                                    &      $10^4$                &            $Re = Ua/\nu$                             &            $10^4$                \\
+Boundary layer thickness                        &      $\delta=aRe^{-1/2}$                          &      $10^{-2}a$           &            $\delta=aRe^{-1/2}$                   &           $10^{-2}a$          \\
+Grid spacing                                               &     $h = \delta/10$                                    &      $10^{-3}a$           &            $ h = \delta/10$                           &            $10^{-3}a$          \\
+Number of grid points                               &     $N_g = a^2/h^2$                                &      $10^6$                 &            $N_g = a^3/h^3$                        &            $10^9$                 \\
+Time step limit                                            &     $\Delta t = h/U$                                   &      $10^{-3}a/U$       &            $\Delta t = h/U$                           &            $10^{-3}a/U$       \\
+Number of time steps                                &     $N_t = 10a/U\Delta t$                       &       $10^4$                 &            $N_t = 10a/U\Delta t$                &            $10^4$                 \\
+Flops per time step                                    &     $N_s = 10^3N_g\log N_g$              &      $10^{10}$             &            $N_s = 10^3N_g\log N_g$       &           $10^{10}$            \\
+Flops per solution                                      &     $N_{sol} = N_s N_t $                        &       $10^{14}$            &             $N_{sol} = N_s N_t $                 &           $10^{16}$            \\
+Flops per adjoint                                        &     $N_{adj} = N_{sol} \log N_t $          &       $10^{14}$            &             $N_{sol} = N_s N_t $                 &           $10^{16}$             \\
+Number of iterations for optimization     &     $N_{iter}$                                            &       $20$                     &             $N_{iter} $                                    &           $20$                      \\
+Total flops for optimization                       &     $N_{adj} N_{iter}$                             &       $10^{16}$            &             $N_{adj} N_{iter} $                     &           $10^{18}$             \\
+Desktop speed                                           &     $R$ (in flops/sec)                              &       $10^{10}$            &              $R$ (in flops/sec)                       &          $10^{10}$              \\
+Wall time per solution                               &     $t_w = N_{sol}/R$                              &       $10^4$ sec         &              $t_w = N_{sol}/R$                      &          $10^6$ sec            \\
+Wall time per adjoint                                 &     $t_{adj} = N_{adj}/R$                       &        $10^5$ sec         &              $t_{adj} = N_{adj}/R$                 &          $10^7$ sec            \\
+Total wall time for optimization               &     $t_{total} = N_{iter} t_{adj}$             &        $O$(months)      &              $t_{total} = N_{iter} t_{adj}$      &          $O$(years)             \\
+\hline
+\end{tabular}
+\caption[An estimate of computational complexity of direct numerical simulation]{An order-of-magnitude estimate of the computational complexity and expected computational wall time for the execution of stroke optimization for flow of characteristic speed $U$ past a body of characteristic size $a$ at a Reynolds number of $10^4$. The various prefactors governing the accuracy of the solution are chosen here to reflect the best estimates from literature, but err on the side of under-estimation. Real computational time experienced by researchers is higher by up to two orders of magnitude.}
+\end{table}
+
 
 An hierarchy of reduced order models of fluid flow provide an alternative to avoid the computational effort for the solution of Navier-Stokes equations, at the expense of reduced (or sometimes uncertain) accuracy.
 All these models identify that viscous effects in the flow may be neglected except for the process of vorticity shedding from the body.

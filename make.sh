@@ -1,9 +1,6 @@
-latex thesis
+pdflatex thesis
 bibtex thesis
-latex thesis
-latex thesis
-#dvipdfmx -p letter thesis.dvi
-dvips -t letter thesis.dvi
-pstopdf thesis.ps
+pdflatex thesis
+pdflatex thesis
 ./clean.sh
 open thesis.pdf

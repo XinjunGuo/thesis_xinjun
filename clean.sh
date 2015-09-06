@@ -1,1 +1,1 @@
-rm *.{aux,lot,lof,toc,cb,bbl,blg}
+rm *.{aux,bbl,blg,cb,cb2,lof,log,lot,toc}
