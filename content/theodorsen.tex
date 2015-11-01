@@ -1,41 +1,43 @@
 
 The flow around a flat airfoil is one of the few cases for which analytical solutions are possible.
-Following the work by Theodore Theodorsen, we analyze the flow past a flat plate with both heaving and pitching motion, and further find the optimal stroke for maximum energy extraction from the ambient flow. 
+Following the work by Theodore Theodorsen, we analyze the flow past a flat plate with both heaving and small-angle pitching motion, and further find the optimal stroke for maximum energy extraction from the ambient flow. 
 
 \section{Flow past a flat plate}
 
-The flow can be decomposed into two parts: noncirculatory flow, and circulatory flow due to vortex shedding.
+The flow around a flat plate can be decomposed into two parts: noncirculatory flow, and circulatory flow due to vortex shedding.
 With those, the forces and moments acting on the airfoil, and then the total work done by the fluid on the plate, are calculated.
 
 \subsection{Noncirculatory flow}
 
 In this part, the velocity (potential) which satisfies the Laplace equaiton with the no-penetration boundary condition is calculated.
-The flat plate with length $2b$ in $z-plane$ can be obtained from a circle with radius $b$ in $\zeta$-plane, through the Zhukovsky conformal mapping
+The flat plate with length $2b$ in $z$-plane can be obtained from a circle with radius $b$ in $\zeta$-plane, through the Zhukovsky conformal mapping
 \begin{align}
 2z = \zeta + \frac{b^2}{\zeta},    \text{   or~~~~~~}   \zeta =z \pm \sqrt{z^2-b^2}.
 \end{align}
-Note that we have an extra fractor $2$ in front of $z$ and by this the plate is simply the projection of the circle on the  $x$ axis.
-But when we transform the flow back into that $z$-plane, the free stream velocity at infinity should be reduced by half.
-As we know, the complex flow potential around a 2D circular cylinder with radius $b$ placed in an otherwise free stream $(u,v)$ is the superposition of potentials of the free stream and the flow due to a dipole 
+Note that we have an extra factor $2$ in front of $z$ compared with the traditional transform and by this the plate is simply the projection of the circle on the  $x$ axis.
+But when we transform the flow back into that in $z$-plane, the free stream velocity at infinity should be reduced by half.
+
+As we know, the potential flow around a 2D circular cylinder with radius $b$ placed in an otherwise free stream $(U,V)$ is the superposition of the free stream and the flow due to a dipole, with the complex potential
 \begin{align}
-w(\zeta) = (u-iv)\zeta+\frac{(u+iv)b^2}{\zeta}.
+w(\zeta) = (U-iV)\zeta+\frac{(U+iV)b^2}{\zeta}.
 \end{align} 
-Plugging the Zhukovsky mapping in (remember to reduce the free stream velocity by half), we get the flow around the flat plate as
+Plugging the Zhukovsky mapping in (remember to reduce the free stream velocity by half), we get the flow around the flat plate in the $z$-plane as
 \begin{align}
-w(z) = uz \mp iv\sqrt{z^2-b^2}.
+w(z) = Uz \mp iV\sqrt{z^2-b^2}.
 \end{align} 
 For the calculation of the forces and moments on the plate, we only need the flow on the surface of the plate.
-Let $z = bx$ with $x$ dimensionless, and we get the potential as
+Let $z = bx$ with $x$ dimensionless, and we get the potential (real part of complex potential) as
 \begin{align}
-\phi(x) = ubx \pm vb\sqrt{1-x^2},
+\phi(x) = Ubx \pm Vb\sqrt{1-x^2},
 \end{align} 
 where the plus and minus signs correspond to the upper and lower surfaces respectively. 
 The first term is due to the free stream, and is common for both surfaces, thus contributing nothing to the total forces and moments on the airfoil as a whole.
-In the following, potential $\phi$ will only refer to the perturbation to the free stream on the upper surface of the airfoil
+In the following, potential $\phi$ will only refer to the second term, which is the perturbation to the free stream on the upper surface of the airfoil
 \begin{align}
-\phi(x) = vb\sqrt{1-x^2}.
+\phi(x) = Vb\sqrt{1-x^2}.
 \end{align} 
-Apply this to the flat airfoil, lying with a small angle $\alpha$ relative to the horizontal level, moving horizontally with speed $v$ and also vertically with speed $\dot{h}$. Relative to the airfoil, the free stream is $(v,v\alpha+\dot{h})$ and the corresponding potential is
+Apply this to the flat airfoil, lying with a small fixed angle $\alpha$ relative to the horizontal level, moving horizontally with speed $v$ and vertically with speed $\dot{h}$.
+Relative to the airfoil, the free stream is approximately $(v,v\alpha+\dot{h})$ and thus the corresponding potential is
 \begin{align}
 \phi(x) = (v\alpha + \dot{h})b\sqrt{1-x^2}.
 \end{align} 
@@ -45,7 +47,7 @@ This contribution turns out to be $\phi(x) = \frac{1}{2}\dot{\alpha}xb^2\sqrt{1-
 \phi_{nc}(x) = (v\alpha + \dot{h} + \frac{1}{2}\dot{\alpha}bx) b\sqrt{1-x^2}.
 \end{align} 
 
-With he velocity potentials being known, we are able to calculate the local pressures and by integration to obtain the total forces and moments on the airfoil.
+With the velocity potential, we are able to calculate the local pressures and by integration to obtain the total forces and moments on the airfoil.
 Employing the Bernoulli's equation for unsteady flow, the local pressure is, except for a constant,
 \begin{align}
 p_h = -\rho[\frac{\partial \phi}{\partial t} + \frac{q^2}{2}],
@@ -65,17 +67,23 @@ M_{nc} & = \int^{1}_{-1}pb^2xdx
 
 \subsection{Circulatory flow}
 
-In this part, we shall calculate the flow due to the shed vortices extending from the airfoil to infinity to account for the viscous effect.
-As we know, the velocity potential of the flow around the circle (with radius 1) resulting from the vortex element $d\Gamma$ at $(X_0, 0)$ ($X_0 > 1$) can be obtained by the superposition of the flow due to the vortex and an image vortex $-d\Gamma$ at $(1/X_0,0)$ as
+In order to (partially) account for the viscous effect, we assume certain vorticity is shed from the airfoil and forms a thin layer of vortex sheet, extending from the trailing edge of airfoil to infinity.
+In this part, we shall calculate the contribution from the flow induced by this vortex sheet.
+
+As we know, the flow around a circle (with radius 1) due to a vortex element $d\Gamma$ at $(X_0, 0)$ ($X_0 > 1$) can be obtained by the superposition of the flow due to the vortex and an image vortex $-d\Gamma$ at $(1/X_0,0)$ as
 \begin{align}
 \mathrm{d}\phi_\Gamma (X,Y) & = \frac{\mathrm{d}\Gamma}{2\pi}[\arctan \frac{Y}{X-X_0} - \arctan \frac{Y}{X-1/X_0}]  \\
-            & =  \frac{\mathrm{d}\Gamma}{2\pi}\arctan \frac{(X_0-1/X_0)Y}{X^2-(X_0+1/X_0)X+Y^2+1}
+            & =  \frac{\mathrm{d}\Gamma}{2\pi}\arctan \frac{(X_0-1/X_0)Y}{X^2-(X_0+1/X_0)X+Y^2+1}.
 \end{align}
-Introducing $X_0 + 1/X_0 = 2x_0$ or $X_0 = x_0 + \sqrt{x_0^2-1}$ on the $x$ axis, and $X=x$ and $Y=\sqrt{1-x^2}$ on the circle (upper half), the potential becomes
+On the (upper half) circle with $X = x$ and $Y = \sqrt{1-x^2}$, the equation above can be written as
+\begin{align}
+\mathrm{d}\phi_\Gamma (X = x,Y = \sqrt{1-x^2})  =  \frac{\mathrm{d}\Gamma}{2\pi}\arctan \frac{(X_0-1/X_0)\sqrt{1-x^2}}{2-(X_0+1/X_0)x}.
+\end{align}
+Transforming to the space of the plate through the Zhukovsky conformal mapping defined earlier, the field point $(x, \sqrt{1-x^2})$ maps to $(x, 0)$ and the vortex position $(X_0, 0)$ maps to $(x_0, 0)$ with $X_0 + 1/X_0 = 2x_0$ or $X_0 = x_0 + \sqrt{x_0^2-1}$.
+With these, we can write down the potential at $x$ on the upper surface of a flat plate due to vortex element $d\Gamma$ at $(x_0, 0)$ as
 \begin{align}
 \mathrm{d}\phi (x) = \frac{\mathrm{d}\Gamma}{2\pi} \arctan \frac{\sqrt{1-x^2}\sqrt{x_0^2-1}}{1-x_0x}.
 \end{align}
-Since our Zhukovsky transformation exactly maps point $(X_0, 0)$ to $(x_0, 0)$ and points on a circle to its projection on the $x$-axis, the expression above gives precisely the potential at $x$ on a flat plate due to vortex element $d\Gamma$ at $(x_0, 0)$.
 
 For the pressure difference between upper and lower surfaces, we have the same relation $p = -2\rho[\frac{\partial \phi}{\partial t} + v\frac{\partial \phi}{\partial (bx)}]$.
 But since the vortex elements are regarded as moving to the right relative to the airfoil with the free stream velocity $v$,  we have $\frac{\partial \phi}{\partial t} = v\frac{\partial \phi}{\partial (bx_0)}$ and so 
@@ -88,7 +96,7 @@ By integration over all the vortices and with $d\Gamma = U(x_0)bdx_0$, we get th
 \phi_c(x) & =  \frac{1}{2\pi} \int_{1}^{\infty}\arctan \frac{\sqrt{1-x^2}\sqrt{x_0^2-1}}{1-x_0x}U\mathrm{d}x_0, \\
 p_c(x) &  =  -\frac{\rho v }{\pi b} \int_{1}^{\infty}\frac{x_0+x}{\sqrt{1-x^2}\sqrt{x_0^2-1}} Ub\mathrm{d}x_0.
 \end{align}
-With further integration over the plate, the total force and moment acting on the airfoil are obtained as
+With further integration over the plate, the total force and moment acting on the airfoil due to the circulatory flow are obtained as
 \begin{align}
 P_c & =  \int_{-1}^{1} p(x) b \mathrm{d}x
    =  -\rho v b \int_{1}^{\infty} \frac{x_0}{\sqrt{x_0^2-1}} U \mathrm{d}x_0, \\
@@ -100,15 +108,15 @@ Note that since the vortex element is considered stationary with respect to the 
 
 \subsection{Magnitude of Circulation}
 
-In this section, the magnitude of the circulation is determined by the Kutta condition, which requires that no infinite velocities exist at the trailing edge of the plate, or at $x = 1$,
+In this section, the magnitude of the circulation is determined by the Kutta condition, which requires that no infinite velocities exist at the trailing edge of the plate with $x = 1$,
 \begin{align}
 \frac{\partial (\phi_{nc} + \phi_c)}{\partial x} |_{x = 1} = \text{finite}.
 \end{align}
-Introducing the expression for $\phi_{nc}$ and $\phi_c$ from the previous two parts gives the following relation
+Plugging in the expressions for $\phi_{nc}$ and $\phi_c$ from the previous two parts gives the following relation
 \begin{align}       \label{eqn:Kutta}
 \frac{1}{2\pi} \int_{1}^{\infty} \sqrt{\frac{x_0+1}{x_0-1}} U \mathrm{d}x_0 = v\alpha + \dot{h} + \frac{1}{2}b\dot{\alpha}.
 \end{align}
-For our purpose, the variables on the right hand side, say $\alpha$ and $\dot{h}$, are given and the circulation $U(x_0)$ is determined by the relation above, and the flow around the airfoil is further obtained. 
+For our purpose, the variables on the right hand side, say $\alpha$ and $\dot{h}$, are given and the expression above determined the circulation function $U(x_0)$ , and further the flow around the airfoil. 
 In the following, we write
 \begin{align}
 Q \equiv v\alpha + \dot{h} + \frac{1}{2}b\dot{\alpha},
@@ -117,7 +125,7 @@ and introduce the function
 \begin{align}
 C(k) \equiv \frac{\int_{1}^{\infty} \frac{x_0}{\sqrt{x_0^2-1}} U \mathrm{d}x_0}{\int_{1}^{\infty} \frac{x_0+1}{\sqrt{x_0^2-1}} U \mathrm{d}x_0}.
 \end{align}
-By these, the force and moment acting on the airfoil due to the circulatory flow can be rewritten as
+With these definitions, the force and moment acting on the airfoil due to the circulatory flow can be rewritten as
 \begin{align}
 P_c & = -2\pi \rho b v CQ,  \\
 M_c & = \pi \rho b^2 v (C-1)Q.
@@ -125,14 +133,18 @@ M_c & = \pi \rho b^2 v (C-1)Q.
 
 \subsection{Function C(k)}
 
-If the airfoil adjusts its configuration periodically, that is, the variables $\alpha$ and $h$ are both periodic functions of time with a single mode, we can write the circulation as $U = U_0 \exp \{i[k(\frac{s}{b}-x_0)+ \varphi] \}$, where $s = vt$ denotes the distance from the first vortex element to the airfoil, and $k$ is the dimensionless wavenumber.
-For this special case with a single mode, we don't need to calculate the magnitude $U_0$ explicitly using the relation (\ref{eqn:Kutta}), because it will cancel out in $C(k)$ and give
+If the airfoil adjusts its configuration periodically, that is, the stroke parameters $\alpha$ and $h$ are both periodic functions of time with a single mode, we can write the circulation distribution as
+\begin{align}
+U(x_0) = U_0 \exp \{i[k(\frac{s}{b}-x_0)+ \varphi] \},
+\end{align}
+where $s = vt$ denotes the distance from the first vortex element to the airfoil, and $k$ is the dimensionless wavenumber.
+For this special case with a single mode, we don't need to calculate the magnitude $U_0$ explicitly using the relation (\ref{eqn:Kutta}), because it will cancel out in the expression of $C(k)$ and give
 \begin{align}
 C(k) = \frac{\int_{1}^{\infty} \frac{x_0}{\sqrt{x_0^2-1}} e^{-ikx_0} \mathrm{d}x_0}{\int_{1}^{\infty} \frac{x_0+1}{\sqrt{x_0^2-1}} e^{-ikx_0} \mathrm{d}x_0}.
 \end{align}
 The integrals on the numerator and denominator can both be expressed using Bessel functions, and then the equation can be written as
 \begin{align}
-C(k) & =  \frac{\frac{\pi}{2}(-J_1+iY_1)}{\frac{\pi}{2}(-(J_1+Y_0)+i(Y_1-J_0))}
+C(k) & =  \frac{\frac{\pi}{2}(-J_1+iY_1)}{\frac{\pi}{2}[-(J_1+Y_0)+i(Y_1-J_0)]}
           \equiv  F+iG,
 \end{align}
 with the real and imaginary part
@@ -177,7 +189,7 @@ and averaging over one period, noticing that the first and third line contribute
 \overline{W}_{c}  = & -2\pi \rho b v \frac{1}{4} [C(vA+i\omega bH + \frac{1}{2} i\omega bA) (-i\omega bH^{*}) + c.c.]     \\
                                   & +\pi \rho b^2 v \frac{1}{4} [(C-1)(vA+i\omega bH + \frac{1}{2} i\omega bA) (-i\omega A^{*}) + c.c.]
 \end{align}
-Considering  $\omega = \frac{vk}{b}$, the expression above can be rewritten with standard quadratic form as
+which can be rewritten with standard quadratic form (with $\omega = vk/b$) as
 \begin{align}
 \frac{\overline{W}_{c}}{ \pi \rho v^3 b/4} = \overline{X} M X,
 \end{align}
@@ -189,19 +201,32 @@ M = \begin{bmatrix}   -4k^2 F   &  -k(2G+k) - i2k(kG-F)  \\
 \end{align}
 Remember that the energy cost for the airfoil is given, say, $\overline{X} X = 1$.
 So our goal is to maximize $\overline{X} M X$ under the constraint $\overline{X} X = 1$.
-It is readily shown that this is equivalent to solve the eigenvalue problem of $M$ as follows.
+It is readily shown as follows that this is equivalent to solve the eigenvalue problem of $M$.
 The objective function with Lagrangian multiplier is 
 \begin{align}
 f(X; \lambda) = \overline{X} M X - \lambda (\overline{X} X - 1),
 \end{align}
 and setting the derivative as zero gives $MX = \lambda X$ and the corresponding extreme value of $f$ is found to be $\lambda$.
 
-\subsection{Asymptotic analysis}
+For different wavenumber $k$, the corresponding optimal energy efficiency is calculated as the eigenvalue of $M$ and plotted in Fig. \ref{fig:Theodorsen}.
+The figure clearly shows two different asymptotes for small and large wavenumber $k$ respectively, and between them the optimal wavenumber $k$ is also located.
+The two different asymptotic behaviors can be shown reasonable by simple approximation of the matrix $M$ as follows. 
+
+\begin{figure}
+\begin{center}
+\includegraphics[width=12cm]{Figures/TheodorsenEnergy.pdf}
+\caption[The optimal energy efficient for different stroke frequencies]{The optimal efficiency of energy extraction for different stroke frequencies is shown. The two different asymptotic behaviors are captured.}
+\end{center}
+\caption{fig:Theodorsen}
+\end{figure}
+
 
 For small $x$, the Bessel's functions have the following asymtotes
 \begin{align}
-Y_0(x)  \simeq  \frac{2}{\pi}[\ln (\frac{x}{2}) + \gamma],   \hspace{20pt}  J_0(x) \simeq 1  \\
-Y_1(x)  \simeq  -\frac{2}{\pi x},   \hspace{40pt}  J_1(x) \simeq \frac{x}{2}
+Y_0(x)  \simeq  \frac{2}{\pi}[\ln (\frac{x}{2}) + \gamma],  \hspace{3mm} 
+Y_1(x)  \simeq  -\frac{2}{\pi x}, \hspace{3mm}
+J_0(x) \simeq 1, \hspace{3mm}
+J_1(x) \simeq \frac{x}{2},
 \end{align}
 where $\gamma \simeq 0.5772$ is the Euler-Mascheroni constant, and accordingly
 \begin{align}
@@ -209,8 +234,10 @@ F(k) \simeq 1,  \hspace{30pt}   G(k) \simeq k \ln (\frac{k}{2})
 \end{align}
 and
 \begin{align}
-M \simeq \begin{bmatrix}   -4k^2   &  -k^2[1+ 2\ln (\frac{k}{2})] + i2k[1-k^2\ln (\frac{k}{2})]  \\
-                        -k^2[1+ 2\ln (\frac{k}{2})] - i2k[1-k^2\ln (\frac{k}{2})] &   2k^2\ln (\frac{k}{2})  \end{bmatrix}.
+M \simeq \begin{bmatrix} 
+-4k^2   &  -2k^2 \ln k + i2k  \\
+-2k^2 \ln k - i2k  &   2k^2 \ln k 
+\end{bmatrix}.
 \end{align}
 With these approximations, the maximum eigenvalue and the corresponding eigenvector are found to be
 \begin{align}
@@ -244,11 +271,14 @@ X \simeq \frac{2}{\sqrt{5}}
 \end{align}
 We see that in this high-frequency regime the maximum efficiency of energy extraction tends to a constant as the frequency grows.
 
-\subsection{Numerical solution}
 
 \begin{figure}
 \begin{center}
-\includegraphics[width=12cm]{Figures/TheodorsenEnergy.pdf}
+\begin{tabular}
+\includegraphics[width=12cm]{Figures/Strouhaul_vs_Efficiency.pdf} \\
+\includegraphics[width=12cm]{Figures/Strouhaul_vs_Cp.pdf}
+\end{tabular}
 \caption[The optimal energy efficient for different stroke frequencies]{The optimal efficiency of energy extraction for different stroke frequencies is shown. The two different asymptotic behaviors are captured.}
 \end{center}
+\caption{fig:Strouhaul}
 \end{figure}
