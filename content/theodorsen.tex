@@ -204,6 +204,8 @@ M(k) = \begin{bmatrix}   -4k^2 F   &  (2kG+k^2) - i(2kF - 2k^2G)  \\
                          (2kG+k^2) + i(2kF - 2k^2G)  &   2kG - k^2(1 - F)  \end{bmatrix}.
 \end{align}
 
+\subsection{Optimal Stroke}
+
 So our goal is to maximize $X^* M X$ under the constraint $X^* X = 1$.
 It is readily shown as follows that this is equivalent to solve the eigenvalue problem of $M$.
 The objective function with Lagrangian multiplier is 
@@ -212,13 +214,15 @@ f(X; \lambda) = X^* M X - \lambda (X^* X - 1),
 \end{align}
 and setting the derivative as zero gives $MX = \lambda X$ and the corresponding extreme value of $f$ is found to be $\lambda$.
 
-For different wavenumber $k$, the corresponding optimal energy efficiency is numerically computed as the eigenvalue of $M$ and plotted in Figure \ref{fig:Theodorsen}.
-The figure clearly shows two different asymptotes for small and large wavenumber $k$ respectively, and between them the optimal wavenumber $k$ is also located.
-The two different asymptotic behaviors can be verified by the asymptotic behaviors of the matrix $M$ as follows. 
+For different wavenumber $k$, the corresponding optimal energy efficiency is numerically computed as the eigenvalue of $M$ and plotted in Figure \ref{fig:Theodorsen}, in which the corresponding phase difference between pitching and heaving is also shown.
+The figure clearly shows two different asymptotes for small and large wavenumber $k$ respectively, and the optimal wavenumber $k$ can be located somewhere in between.
+For small wavenumber (frequency), the energy efficiency is generally very low and grows linearly with the wavenumber, and the optimal stroke has a large phase difference between heaving and pitching.
+For the case of large wavenumber, the optimal stroke has almost no phase lag between pitching and heaving, and the energy coefficient tends to a constant.
+These two different asymptotic behaviors can be verified by the asymptotic behaviors of the matrix $M$ as follows. 
 
 \begin{figure}
 \begin{center}
-\includegraphics[width=12cm]{Figures/TheodorsenEnergy.pdf}
+\includegraphics[width=13cm]{Figures/TheodorsenEnergy.pdf}
 \end{center}
 \caption[The optimal energy efficiency for different oscillating frequencies of plate]{The optimal efficiency of energy extraction for different oscillating frequencies is shown. The two different asymptotic behaviors are captured.}
 \label{fig:Theodorsen}
@@ -249,7 +253,7 @@ With these approximations, the maximum eigenvalue and the corresponding eigenvec
 X \simeq   \frac{1}{\sqrt{2}}
 \begin{bmatrix} k \ln k - i \\  1   \end{bmatrix}.
 \end{align}
-We see that in this low-frequency regime the optimal stroke has a phase difference between pitching and hitching, which tends to $\pi/2$ as $k$ goes to 0, and the corresponding optimal energy coefficient is linearly proportional to the frequency.
+We see that in this low-frequency regime the optimal stroke has a phase difference $\phi$ between pitching and hitching, which tends to $90^o$ as $k$ goes to 0, and the corresponding optimal energy coefficient is linearly proportional to the frequency.
 
 For large $x$, the Bessel's functions have different approximations from the case of small $x$ as
 \begin{align}
@@ -275,6 +279,20 @@ X \simeq \frac{2}{\sqrt{5}}
 \end{align}
 We see that in this high-frequency regime the maximum efficiency of energy extraction tends to a constant as the frequency grows.
 
+\subsection{Comparison With Experiments}
+
+For comparison, our results are also plotted along with those from both flume and field experiments in Figure \ref{fig:Strouhal}.
+For high energy efficiency, the pitching has a large amplitude $\alpha = 70^o$, the heaving amplitude is chosen as $h_0 = [2b, 2.5b, 3b]$, and the phase difference between heaving and pitching is $\phi = 90^o$.
+Note that we use slightly different scales for nondimensionalization.
+For consistency of comparison, the energy efficiency $\eta$ is defined as the portion of flow energy flux within the swept area extracted by the device, i.e. $\eta = \overline{W} / \frac{1}{2} \rho U^3 Y_p$, where $Y_p$ is calculated as the difference between the highest and lowest vertical positions reached by the leading/trailing edges, and the reduced frequency is scaled as $f = k/\pi$ instead of our wavenumber $k$.
+The figure shows great agreement on the general trends, although some quantitative discrepancies exist among them.
+Particularly, they display approximately the same optimal frequency around 0.12, which is very close to the value 0.15 found by DNS.
+
+What's more, our simple model of oscillating plate may shed some different light on the mechanism for the selection of optimal frequency for energy harvesting than those reported previously.
+Zhu proposed that the flow energy extraction is closely related to the efficient evolution of the wake and particularly the optimal frequency is selected by the most unstable mode in the wake.
+However, our simple model, without any instabilities in the wake, also predicts the optimal frequency correctly.
+On the other hand, both our model and the experimental data show that the optimal frequency is pretty insensitive to the heaving amplitude.
+Zhu's DNS data shows exactly the same insensitivity and additionally the obviously different scenarios of instabilities in the wake for different heaving amplitudes, except that the energy efficiency with heaving amplitude close to the chord length is higher than the other cases.
 
 \begin{figure}
 \begin{center}
@@ -287,15 +305,4 @@ We see that in this high-frequency regime the maximum efficiency of energy extra
 \label{fig:Strouhal}
 \end{figure}
 
-The dependence of energy efficiency on the reduced oscillating frequency (Strouhal number) is shown in Figure \ref{fig:Strouhal}.
-For high harvesting efficiency, the other parameters are selected as $\alpha = 70^o$, $\phi = 90^o$.
-Along with the results predicted by our model, the data from both flume and filed experiments are also displayed for comparison.
-Although some quantitative discrepancies exist among them, they do show great agreement on the trends.
-Particularly, they display approximately the same optimal frequency around 0.12, which is very close to the value 0.15 found by DNS.
-
-More importantly, our simple model of oscillating foil may shed some different light on the mechanism for the selection of optimal frequency for energy harvesting than that reported previously.
-Zhu proposed that the flow energy extraction is closely related to the efficient evolution of the wake and particularly the optimal frequency is selected by the most unstable mode in the wake.
-However, our simple model, without any instabilities in the wake, also predicts the optimal frequency correctly.
-On the other hand, both our model the experimental data show that the optimal frequency is pretty insensitive to the heaving amplitude.
-Zhu's DNS data shows exactly the same insensitivity and additionally the obviously different scenarios of instabilities in the wake for different heaving amplitudes, except that the energy efficiency with heaving amplitude close to the chord length is higher than the other cases.
  
