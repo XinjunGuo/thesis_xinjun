@@ -1,0 +1,13 @@
+\begin{tikzpicture}[scale=3.5]
+ 
+  \draw[dashed] (-1, 0) -- (1, 0);
+ \draw[very thick] (150:1cm) -- (-30:1cm);
+ \draw[<-,thick] (150:0.25cm) arc (150:180:0.25cm);
+   \node at (165:0.4cm) {$\dot{\alpha}$};
+\draw[->,thick] (0, 0.1) -- (0, 0.4);
+  \node at (0.1,0.25) {$\dot{h}$};
+ \foreach \y in {-0.6, -0.3, 0, 0.3, 0.6}
+   \draw[->, thick] (-2.5, \y cm) -- (-1.5, \y cm);
+ \node at (-2, 0.7) {$\Uinf$};
+ 
+ \end{tikzpicture}

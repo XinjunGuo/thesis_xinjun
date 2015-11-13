@@ -1,11 +1,6 @@
-% ----------------------------------------- Sample ----------------------------------------
-
-% \lipsum[61-80]
-
-
-% ----------------------------------------- Real ----------------------------------------
 
 \section{Motivation}
+
 This section describes the approximations that are made and how certain considerations allow us to simplify the equations, by omitting terms that are known to be small or information that is not important.
 
 The most important, and the most delicate, approximation is naturally the neglect of viscosity.
@@ -30,7 +25,7 @@ However the vorticity is "produced" at the solid boundary and its subsequent tra
 It is the convection with the fluid that carries the vorticity into the large structures of the wake, but the velocity is zero at the wall and only the viscosity can make the vorticity penetrate into the stream at all.
 Therefore the "justification" we just reviewed breaks down in the wall region.
 
-This motivates the procedure of coupling an invisicid outer flow and a viscous boundary layer flow.
+This motivates the procedure of coupling an inviscid outer flow and a viscous boundary layer flow.
 This procedure is common when the outer flow is not only treated as inviscid but also as irrotational.
 Here, the outer flow will be vertical.
 The effort will be worthwhile if an efficient solver is available for the simplified equations in each region.
@@ -50,7 +45,7 @@ The systematic mathematical formulation of these ideas are presented in the foll
 
 \begin{figure}
  \begin{center}
- \includegraphics[width = 14cm]{./Figures/ModelSchematic.eps}
+ \includegraphics[width = 14cm]{./Figures/model/ModelSchematic.pdf}
 \end{center}
  \caption{A schematic description of the model}
  \label{fig:modelschematic}

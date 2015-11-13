@@ -1,6 +1,18 @@
-% ----------------------------------------------------- Sample ---------------------------------------------------
 
-% \lipsum[1-20]
+Although our model incorporates Prandlt's boundary layer approximation which is considered to be invalid for separated flows, it is shown to work with a satisfactory accuracy.
+In terms of capturing vortex shedding, the performance of our model is good for smooth bodies, comparing with the performance of Kutta condition for bodies with sharp edge.
+For the test case study, it captures most of the important flow features, at least qualitatively.
+Quantitative discrepancies still exist, like a smaller and weaker wake, relatively higher pressure drag and lower total circulation.
+These all indicates that somehow the vorticity we are shedding are a little lower compared with the DNS result.
+Details of numerical implementation might matter a little but more likely this is due to the finite-Reynolds-number effect.
+By increasing the accuracy of the numerical scheme, whatever implementation is used will (if it does) only converge to the model equations instead of the full Navier-Stokes equations.
 
+Another thing which needs attention is the really low cost of the model.
+Most of the cost in the outer region comes from the evaluation of $N$ vortices interactions, whose cost is no higher than order $N\ln N$ due to fast multiple method. 
+Also, the magnitude of $N$ can be well controlled by the aforementioned vortex merging technique when necessary.
+Inside the boundary layer, the cost of solving the Prandtl's equations is linear to the total number of grids $N_g$.
+Considering that $N_g$ is independent of the Reynolds number $Re$, this is a prominent advantage, especially for simulation of high-Reynolds-number flows.
+For the test case study in this paper, it takes at most a few minutes to run a non-optimized code on an ordinary laptop.
 
-% ----------------------------------------------------- Real ---------------------------------------------------
+On the other hand, many choices can be made to improve the performance of the model when designing practical numerical implementations for different problems.
+For instance, the introduction of a boundary layer model of higher order, with curvature terms, can help when treating bodies with tight curves. For flow of higher Reynolds number, addition of an appropriate model for turbulence to the boundary layer equations will give more physical results.

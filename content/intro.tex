@@ -1,23 +1,30 @@
-% ---------------------------------------------------- Sample ----------------------------------------------
-
-% \lipsum[21-40]
-
-% \nocite{Lax1956,Cooley1965,Banach1924}
-
-
-% ----------------------------------------------------- Real ---------------------------------------------------
 
 Bio-locomotion using high Reynolds number (Re) unsteady fluid dynamics is an active area of research.
-The ability of many birds, mammals, insects, fish to control the unsteady flow around them currently appears to be outside the range of robotic mimics.
+The ability of many birds \cite{warrick2005aerodynamics}, mammals \cite{fish2006passive,muijres2008leading}, insects \cite{ellington1996leading,srygley2002unconventional,sane2003aerodynamics,ellington1999novel,wang2005dissecting}, fish \cite{fish2006passive,triantafyllou2000hydrodynamics} (depicted in Figure \ref{fig:Insects}) to control the unsteady flow around them currently appears to be outside the range of robotic mimics.
 Effective manipulation and control of unsteady effects at high Reynolds numbers are considered to underlie the superior performance of these organisms.
-As the robotics community pushes the limits on engineering, it is useful to know the fundamental performance limits under various fluid-structure interaction setting, e.g. maximum propulsive power of a flexible fin, or the maximum lift possible from a periodically flapping wing.
-The set of beneficial unsteady effects is small and hence, has proved difficult to find.
+As the robotics community pushes the limits on engineering, it is useful to know the fundamental performance limits under various fluid-structure interaction setting, e.g. maximum propulsive power of a flexible fin \cite{tokic2012optimal,van2013optimal,milano2005uncovering,eloy2011optimisation}, or the maximum lift possible from a periodically flapping wing \cite{kawamura2008clapping,karpelson2010energetics,wood2008first}.
+The set of beneficial unsteady effects is small and hence, has proved difficult to find \cite{pesavento2009flapping}.
 The challenge is to develop a reasonable strategy for scanning the large space of all possible motions and deformations of the body to determine the beneficial set.
-Optimization and control theory, with calculus of variations at its foundation, provides a framework fro tackling this complexity.
-Steady progress on a control theoretic framework applied to steady and unsteady fluid dynamics has resulted in significant advances since the late 1980s.
+Optimization and control theory, with calculus of variations at its foundation \cite{lions1971optimal}, provides a framework fro tackling this complexity.
+Steady progress on a control theoretic framework applied to steady and unsteady fluid dynamics has resulted in significant advances since the late 1980s \cite{jameson1988aerodynamic,jameson1998optimum,bewley2000general,kim2007linear,wang2009minimal,yu2013high,culbreth2013high}.
 In a nutshell, the strategy is to couple methods of solving the governing Navier-Stokes equations with adjoint-based gradient calculations to facilitate optimization and control.
 For example to find the maximum lift possible from the unsteady stroke of a wing, one can use gradient descent algorithms.
 However, the presence of nonlinearities and multiple scales in the fluid dynamics impedes rapid computation of the flow.
+
+\begin{figure}
+\begin{center}
+\begin{tabular}[t]{ccc}
+\includegraphics[height=3cm]{./Figures/intro/hummingbird.jpg} & 
+\includegraphics[height=3cm]{./Figures/intro/insect.jpg} & 
+\includegraphics[height=3cm]{./Figures/intro/fish.jpg} \\
+(a) &
+(b) &
+(c)
+\end{tabular}
+\end{center}
+\caption[Locomotion of birds, insects and fish using unsteady fluid dynamics]{Propulsive strokes of (a) birds and (b) insects, and (c) fish impart them with capabilities difficult to reproduce technologically.}
+\label{fig:Insects}
+\end{figure}
 
 \section{Description of the problem}
 
@@ -75,8 +82,8 @@ Again, typical examples are the flow past a circular cylinder, and the static or
 Numerically solving the governing Navier-Stokes equations using primitive variables is prohibitively expensive from the perspective of flow optimization and control.
 A simple back-of-the-envelope estimate of the computational effort for solving the flow corresponding to a Reynolds numbers of $10^4$, shown in table 1, highlights this issue.
 The primary expense arises from resolving the boundary layer; its thickness dictates the number of grid points to be used for spatial discretization, and the time step through the CFL condition.
-On modern desktop computers one flow solution in 2D takes at least hours, and in 3D takes at least days. (The computational effort shown in table 1 is grossly underestimated; flow past stationary, moving and flexible bodies at $Re = 10 - 10^3$ takes a few CPU-days in 2D, and CPU-weeks in 3D, and very little data is available for larger $Re$.)
-Calculating the adjoint variables and implementing a gradient based optimization algorithm increases the computational time to at least months for 2D problems (yeas for 3D).
+On modern desktop computers one flow solution in 2D takes at least hours, and in 3D takes at least days. (The computational effort shown in table \ref{table:DNS} is grossly underestimated; flow past stationary, moving and flexible bodies at $Re = 10 - 10^3$ takes a few CPU-days in 2D \cite{mittal2005immersed}, and CPU-weeks in 3D \cite{pesavento2009flapping,mittal2005immersed}, and very little data is available for larger $Re$.)
+Calculating the adjoint variables and implementing a gradient based optimization algorithm \cite{wang2009minimal} increases the computational time to at least months for 2D problems (yeas for 3D).
 Methods like Large Eddy Simulations model sub-grid scale eddies, but still have to resolve the boundary layer to accurately predict the shed vorticity, and hence are not exempt from this estimate.
 Parallel computing on a cluster of processors can reduce the 2D computational time to few days and today's top 5 supercomputers may be able to reduce the computational time for 3D to several hours, if the algorithms are effectively parallelized, but it is uncertain how data dependencies can be addressed for parallelization.
 In conclusion, optimization, state estimation, and control are still out of range of computation fluid dynamics.
@@ -105,17 +112,18 @@ Total wall time for optimization               &     $t_{total} = N_{iter} t_{ad
 \hline
 \end{tabular}
 \caption[An estimate of computational complexity of direct numerical simulation]{An order-of-magnitude estimate of the computational complexity and expected computational wall time for the execution of stroke optimization for flow of characteristic speed $U$ past a body of characteristic size $a$ at a Reynolds number of $10^4$. The various prefactors governing the accuracy of the solution are chosen here to reflect the best estimates from literature, but err on the side of under-estimation. Real computational time experienced by researchers is higher by up to two orders of magnitude.}
+\label{table:DNS}
 \end{table}
 
 
 An hierarchy of reduced order models of fluid flow provide an alternative to avoid the computational effort for the solution of Navier-Stokes equations, at the expense of reduced (or sometimes uncertain) accuracy.
 All these models identify that viscous effects in the flow may be neglected except for the process of vorticity shedding from the body.
-The simplest of these models apply to rigid wings.
+The simplest of these models \cite{tanabe1994behavior,mahadevan1996tumbling,belmonte1998flutter,mahadevan1999tumbling,pesavento2004falling,andersen2005unsteady} apply to rigid wings.
 They assume the flow around the wings to be qui-steady and model the fluid dynamic force on them in terms of the instantaneous orientation, velocity and acceleration of the wing.
-Versions of such models that incorporate unsteadiness are also available.
+Versions of such models that incorporate unsteadiness \cite{hansen2004beddoes,brunton2013empirical} are also available.
 The assumptions underlying these models make them unsuitable for large amplitude unsteady motion, where the flow can separate from multiple points on the body.
 
-Models in the next level of hierarchy also only apply to bodies with sharp edges, but model vorticity transport according to inviscid dynamics.
+Models in the next level of hierarchy also only apply to bodies with sharp edges, but model vorticity transport according to inviscid dynamics \cite{pedley1999large,jones2005falling,shukla2007inviscid,singh2008hydrodynamics,alben2009simulating,michelin2009unsteady,michelin2010falling,sheng2012simulating}.
 These models assume that vorticity is shed only from the sharp edges of the body and then evolves into a vortex sheet.
 The rate of the vorticity shed is chosen so as to eliminate a singularity of the flow at these sharp edges - the celebrated Kutta condition from aerodynamics.
 The shed vortex sheet is usually represented by an array of discrete point vortices obeying inviscid vortex dynamics or a single tightly rolled-up point vortex (governed by the Brown-Michael vortex dynamics).
@@ -127,7 +135,7 @@ These methods cannot a priori predict the edges at which the flow separates.
 Because the optimal flows are suspected to correspond to a precise control of the instance vorticity shedding switches on or off from one of the edges, or of shedding from another point on the surface of body, these models appear to mis-represent or eliminate the effects underlying the enhanced unsteady performance.
 
 The most accurate and computationally intensive methods in the hierarchy account for the vorticity in the boundary layer as vortex sheets of variable strength at or near the surface of the body.
-The vortex sheets are represented as arrays of point of blob vortices and function to enforce the no-slip condition.
+The vortex sheets are represented as arrays of point of blob vortices and function to enforce the no-slip condition \cite{shukla2007inviscid,chorin1978vortex,leonard1980vortex,sethian1988validation,anderson1989vorticity,koumoutsakos1994boundary,summers1996numerical,eldredge2002vortex}.
 These vortices transport away from the boundary by advection and diffusion, and leave the boundary layer where the flow separates, thus accurately modeling vorticity shedding.
 The drawback of this method is that accurate description of flow requires computational effort comparable to direct solution of Navier-Stokes equations.
 It is so because the distance between the point or blob vortices should be comparable to a fraction of the boundary layer thickness, and play a role analogous to grid spacing in direct solution of Navier-Stokes equations.

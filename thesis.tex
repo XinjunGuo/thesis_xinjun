@@ -13,7 +13,9 @@
 \usepackage{tikz}
 %\usepackage{pgfmath}
 \usetikzlibrary{decorations}
+\usetikzlibrary{decorations.markings}
 \usetikzlibrary{shadows}
+\usetikzlibrary{calc}
 
 % Used only for example text
 \usepackage{lipsum}
@@ -127,6 +129,8 @@ Vortex shedding models for unsteady fluid dynamics
 
 %------------------------ CONTENT ------------------------%
 
+\nocite{*}
+
 \chapter{Introduction}
 \input{content/intro}
 \clearpage{\pagestyle{empty}\cleardoublepage}
@@ -147,7 +151,7 @@ Vortex shedding models for unsteady fluid dynamics
 \input{content/results}
 \clearpage{\pagestyle{empty}\cleardoublepage}
 
-\chapter{Conclusion}
+\chapter{Discussion and Conclusion}
 \input{content/conclusion}
 \clearpage{\pagestyle{empty}\cleardoublepage}
 
