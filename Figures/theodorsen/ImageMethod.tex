@@ -1,0 +1,18 @@
+\begin{tikzpicture}[scale=2]
+
+\draw[dashed] (-1.25, 0) -- (4, 0);
+\draw[very thick, blue] (0, 0) circle (1);
+\node at (0, 0.1) {$O$};
+\draw[->, thick] (0, 0) -- (215:1);
+\node at (205:0.5) {$1$};
+\foreach \x in {3}
+{
+ \draw[->, thick] ($(\x, 0)+(-135:0.1)$) arc (-135:135:0.1);
+ \node at (\x+0.2, 0.2) {$\Gamma$};
+ \node at (\x+0.2, -0.3) {$(X_0, 0)$};
+ \draw[<-, thick, red] ($(1/\x, 0)+(45:0.1)$) arc (45:315:0.1);
+ \node at (1/\x+0.2, 0.2) {$-\Gamma$};
+ \node at (1/\x+0.2, -0.3) {$(1/X_0, 0)$};
+}
+ 
+ \end{tikzpicture}

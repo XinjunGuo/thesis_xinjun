@@ -1,25 +1,9 @@
-%------------------------------------------- Sample ------------------------------------
-
-%% \lipsum[81-100]
-%
-%\begin{figure}
-%  \centering
-%  \input{tikz/picture1}
-%  \caption[Awesome picture]{Isn't this picture awesome?}
-%\end{figure}
-%
-%\begin{figure}
-%  \centering
-%  \input{tikz/picture2}
-%  \caption[Tubular picture]{Totally tubular, dude}
-%\end{figure}
-
-%------------------------------------------- Real ----------------------------------------
 
 In this chapter, we are going to describe the numerical scheme for solving the coupled system of equations in both boundary layer and the outer region, i.e, how to evolve the quantity from time step $n$ to time step $n+1$.
 
 
 \section{Outer flow}
+
 In the outer region, the inviscid equation (???) is integrated using vortex methods, which are based on the discretization of vorticity field and the Lagrangian description of governing equations (???) and (???) that, when solved, determine the evolution of the computational elements.
 As usual, vortex methods enjoy advantages such as the use of computational elements only in regions with nonzero vorticity, the automatic adaptivity of the computational elements, and the rigorous treatment of boundary conditions at infinity.
 Besides, we only need the flow velocity on $C$ , which is decomposed into rotational part and potential part as
@@ -100,7 +84,7 @@ Q u_{\phi, \theta}^{n+1} + v_{\phi}^{n+1} = v_a^{n+1} - v_\omega^{n+1} \quad \te
 (???) together with the condition at $\infty$ provides enough conditions for (???). In general, boundary integral method gives the solution.
 Depending on the shape of $C$, faster method may be possible.
 
-\subsection{Analytical Solution for Circular Geometry}
+\subsection{Analytical solution for circular geometry}
 
 In the special case of circular geometry, equation (???) can be solved analytically as follows. 
 The general solution of Laplacian equation outside a circle with uniform flow at infinity is
@@ -115,7 +99,7 @@ u_{nc} & = & \frac{1}{r} \frac{\partial \phi_{nc}}{\partial \theta}  =  -U\sin\t
 v_{nc} & = & \frac{\partial \phi_{nc}}{\partial r}  =   U\cos\theta + \frac{m}{2\pi r}
 + \sum_{n=1}^{\infty} \frac{ -n (A_n e^{in\theta}+c.c.) }{r^{n+1}}
 \end{eqnarray}
-Then equation (\ref{eqn:potential}) becomes
+Then equation (???) becomes
  \begin{eqnarray} 
 \frac{m}{2\pi c} + \sum_{n=1}^{\infty} \frac{ (-n-n^2Q) (A_n e^{in\theta}+c.c.) }{c^{n+1}}
 = F + (Q-1)U\cos \theta
@@ -126,5 +110,13 @@ m = 2 \pi c \hat{F}_0,  & & A_n = -\frac{c^{n+1}}{n+n^2Q} \hat{F}_n + \frac{Uc^2
 \end{eqnarray}
 where $\hat{F}_n$ is the Fourier  coefficient of $F(\theta)$.
 
-\subsection{Boundary Integral Method}
+\subsection{Numerical scheme}
 
+\noindent \\
+\tikz \draw (0, 0) rectangle (\linewidth, 3in) node[pos=0.3]{Numerical scheme to solve equation};
+
+
+\section{Numerical complexity analysis}
+
+\noindent \\
+\tikz \draw (0, 0) rectangle (\linewidth, 3in) node[pos=0.3]{A paragraph for complexity analysis};

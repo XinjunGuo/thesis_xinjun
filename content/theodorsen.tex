@@ -88,9 +88,17 @@ M_{nc} & = \int^{1}_{-1} p(x)b^2xdx
 
 In order to (partially) account for the viscous effect, we assume certain vorticity is shed from the plate and forms a thin layer of vortex sheet, extending from the trailing edge of the plate to infinity, and the exact amount of the shed vorticity will be determined in the next section.
 In this part, we shall calculate the contribution from the flow induced by this vortex sheet kinematically.
-The general approach is the same as that for nonculatory flow, transforming the problem of flow past a flat plate to that of flow past a circle.
+The general approach is the same as that for noncirculatory flow, transforming the problem of flow past a flat plate to that of flow past a circle.
 
-As we know, the flow around a circle (with radius 1) due to a vortex element $d\Gamma$ (anti-clockwise is positive) at $(X_0, 0)$ ($X_0 > 1$) can be obtained through the image method by the superposition of the flow due to this vortex and an image vortex $-d\Gamma$ at $(1/X_0,0)$ as
+\begin{figure}
+ \centering
+ \noindent \\
+ \input{Figures/theodorsen/ImageMethod}
+\caption[The flow induced by a point vortex outside a circle through image method]{The flow induced by a point vortex outside a circle through image method: the flow induced by a vortex $\Gamma$ outside a circle $(X_0, 0)$ and with no normal velocity on surface of circle is the same as the superposition of the flow induced by two vortices in free space: the original vortex and its image vortex $-\Gamma$ at $(1/X_0, 0)$.}
+\label{fig:ImageMethod}
+\end{figure}
+
+As we know, the flow around a circle (with radius 1) due to a vortex element $d\Gamma$ (anti-clockwise is positive) at $(X_0, 0)$ ($X_0 > 1$) can be obtained through the image method (shown in Figure \ref{ref:ImageMethod}) by the superposition of the flow due to this vortex and an image vortex $-d\Gamma$ at $(1/X_0,0)$ as
 \begin{align}
 \mathrm{d}\phi_\Gamma (X,Y; X_0) & = \frac{\mathrm{d}\Gamma}{2\pi}[\arctan \frac{Y}{X-X_0} - \arctan \frac{Y}{X-1/X_0}]  \\
             & =  \frac{\mathrm{d}\Gamma}{2\pi}\arctan \frac{(X_0-1/X_0)Y}{X^2-(X_0+1/X_0)X+Y^2+1}.
@@ -127,7 +135,7 @@ M_c & =  \int_{-1}^{1} p_c (x) b^2 x \mathrm{d}x
 Note that since the vortex element is considered stationary with respect to the fluid elements, we have $\kappa (x_0) = f(Ut - x_0)$, where $t$ is the time since the beginning of the motion and $Ut-x_0$ is the distance from the location of the first vortex element.
 
 
-\subsection{Magnitude of Circulation}
+\subsection{Magnitude of circulation}
 
 In this section, the magnitude of the circulation is determined by the classical Kutta condition, which requires that no infinite velocities exist at the trailing edge of the plate, or at $x = 1$,
 \begin{align}
@@ -162,7 +170,7 @@ P_c & = 2\pi \rho b U Q C,  \\
 M_c & = \pi \rho b^2 U Q (1 - C).
 \end{align}
 
-\subsection{Function C}
+\subsection{Theodorsen's function C}
 
 If the plate oscillates periodically, that is, the stroke parameters $\alpha$ and $h$ are both periodic functions of time with a single mode, we can write the circulation distribution as
 \begin{align}
@@ -194,7 +202,7 @@ $C(k)$ is of fundamental importance in this model of oscillating plate and its r
 \end{figure}
 
 
-\section{Optimal Frequency for Energy Extraction}
+\section{Optimal frequency for energy extraction}
 
 In this part, we will investigate the dependence of energy extraction efficiency on the oscillating strokes of plate and try to find the optimal frequency.
 For simplicity, we will still look at the oscillating plate with a harmonic motion, that is,
@@ -203,7 +211,7 @@ For simplicity, we will still look at the oscillating plate with a harmonic moti
 \end{align}
 with the complex amplitudes $\alpha_0$ and $h_0$ dimensionless.
 
-\subsection{Energy Extraction}
+\subsection{Energy extraction}
 
 First, we can easily see that the average work done by the noncirculatory flow on the plate over one period is zero. 
 The work rate is
@@ -241,7 +249,7 @@ M(k) = \begin{bmatrix}   -4k^2 F   &  (2kG+k^2) - i(2kF - 2k^2G)  \\
                          (2kG+k^2) + i(2kF - 2k^2G)  &   2kG - k^2(1 - F)  \end{bmatrix}.
 \end{align}
 
-\subsection{Optimal Stroke}
+\subsection{Optimal stroke}
 
 Our goal here is to maximize $X^* M X$ under the constraint $X^* X = 1$.
 It is readily shown as follows that this is equivalent to find the maximum eigenvalue of $M$.
